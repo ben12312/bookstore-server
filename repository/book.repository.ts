@@ -3,9 +3,9 @@ import pool from '../entity/config';
 class BookRepository {
     static async getBooksRepo(req: any) { // pages = ceil(total_records / records_per_page);
         let { page } = req.query;
+        let limit = 2;
         if (!page) page = 1;
-        let limit = 10;
-        let offset = 10 * page;
+        let offset = ( page - 1) * limit
         let response = await pool.query(`SELECT * FROM books LIMIT ${limit} OFFSET ${offset}`)
         return response;
     }

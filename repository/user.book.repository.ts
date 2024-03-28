@@ -46,9 +46,16 @@ class UserBookRepository {
 
         let updateStatus = `UPDATE userbooks
         SET status = 'Paid' WHERE id = ${book.id} RETURNING *;`;
-        let resUpdateStatus = await pool.query(updateStatus);
+        await pool.query(updateStatus);
         
         return resUpdate;
+    }
+
+    static async cancelOrder(req: any) {
+        let {book} = req.body;
+        let deleteUserBook = `DELETE FROM userbooks WHERE id = ${book.id};`;
+        await pool.query(deleteUserBook);
+        return true
     }
 }
 

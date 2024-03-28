@@ -32,6 +32,18 @@ class BookUserController {
             console.log('payBook', error);
         }
     }
+
+    static async cancelOrder(req: Request, res: Response) {
+        try {
+            let resPay = await UserBookRepository.cancelOrder(req);
+            res.status(200).json({
+                message: 'success',
+                data: resPay
+            })
+        } catch (error) {
+            console.log('payBook', error);
+        }
+    }
 }
 
 export default BookUserController;

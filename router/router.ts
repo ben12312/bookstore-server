@@ -13,5 +13,6 @@ Router.post('/users/register', UserController.register);
 Router.get('/user-book/get', UserBookController.getUserBook);
 Router.post('/user-book/order', UserBookController.orderBook);
 Router.post('/user-book/pay', UserBookController.payBook);
+Router.post('/user-book/cancel', UserBookController.cancelOrder);
 
 export default Router;
