@@ -9,7 +9,7 @@ const pool = new Pool({
   port: 5432,
 })
 
-async function setupDb() {
+async function setupDb() { //DATABASE PG VERSION 8.11 NOT SUPPORT "IF NOT EXIST" QUERY SO NEED TO OPEN/CLOSE THIS FUNCTION FOR SETUP
     try {
         await pool.query(`CREATE DATABASE bookstore`)
         await pool.query(`CREATE TABLE users (
