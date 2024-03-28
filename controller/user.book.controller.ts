@@ -14,7 +14,7 @@ class BookUserController {
 
     static async orderBook(req: Request, res: Response) {
         try {
-            let resObj = await UserBookRepository.oderBookRepo(req)
+            let resObj = await UserBookRepository.oderBookRepo(req);
             res.json(resObj)
         } catch (error) {
             console.log('orderBook', error);
@@ -23,9 +23,13 @@ class BookUserController {
 
     static async payBook(req: Request, res: Response) {
         try {
-            
+            let resPay = await UserBookRepository.payBook(req);
+            res.status(200).json({
+                message: 'success',
+                data: (resPay && resPay.rows) ? resPay.rows[0] : {}
+            })
         } catch (error) {
-            
+            console.log('payBook', error);
         }
     }
 }

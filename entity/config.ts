@@ -16,7 +16,8 @@ async function setupDb() {
             id SERIAL PRIMARY KEY,
             login VARCHAR(255) NOT NULL,
             password VARCHAR(255),
-            isAdmin BOOLEAN NOT NULL
+            isAdmin BOOLEAN NOT NULL,
+            point INT NOT NULL
         );`)
         await pool.query(`CREATE TABLE books (
             id SERIAL PRIMARY KEY,
@@ -27,7 +28,7 @@ async function setupDb() {
             tag VARCHAR(255) NOT NULL,
             inStock INT NOT NULL
         );`)
-        await pool.query(`CREATE TABLE user_books (
+        await pool.query(`CREATE TABLE userbooks (
             id SERIAL PRIMARY KEY,
             userId INT NOT NULL,
             bookId INT NOT NULL,

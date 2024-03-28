@@ -11,8 +11,10 @@ class UserRepository {
 
     static async registerRepo(req: any) {
         const { login, password1 } = req.body;
-        let query = `INSERT INTO users (login, password, isAdmin)
-        VALUES ('${login}', '${password1}', false);`
+        let isAdmin = false;
+        if (login == 'Admin') isAdmin = true;
+        let query = `INSERT INTO users (login, password, isAdmin, point)
+        VALUES ('${login}', '${password1}', ${isAdmin}, 100);`
         await pool.query(query)
         return true;
     }
