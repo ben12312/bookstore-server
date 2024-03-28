@@ -31,6 +31,8 @@ async function setupDb() {
             id SERIAL PRIMARY KEY,
             userId INT NOT NULL,
             bookId INT NOT NULL,
+            count INT NOT NULL,
+            total_price INT NOT NULL,
             status VARCHAR(255) NOT NULL,
             paymentCode VARCHAR(255)
         );`)
