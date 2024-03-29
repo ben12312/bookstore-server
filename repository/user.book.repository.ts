@@ -4,11 +4,11 @@ import UserBookService from '../services/user.book.service';
 class UserBookRepository {
     static async getUserBookRepo(req: any) {
         let { userId } = req.query;
-        let query = `SELECT ub.*,b.* FROM userbooks ub
+        let query = `SELECT ub.id, ub.count, ub.total_price, ub.status,ub.paymentcode,
+        b.title,b.writer,b.cover_image,b.point,b.tag,b.instock FROM userbooks ub
         LEFT JOIN books b ON ub.bookId = b.id 
         WHERE ub.userId = ${userId};`;
         let response = await pool.query(query)
-        
         return response;
     }
 
@@ -43,11 +43,10 @@ class UserBookRepository {
         SET point = ${calculatePoin.data}
         WHERE id = ${userId} RETURNING *;`
         let resUpdate = await pool.query(updateUserQuery);
-
+        
         let updateStatus = `UPDATE userbooks
         SET status = 'Paid' WHERE id = ${book.id} RETURNING *;`;
         await pool.query(updateStatus);
-        
         return resUpdate;
     }
 
